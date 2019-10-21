@@ -12,10 +12,14 @@ class AddItem extends React.Component {
     });
   }
   handleClick = () => {
-    this.props.addTaskFunc(this.state.newTaskText);
-    this.setState({
-      newTaskText: ""
-    });
+    if(this.state.newTaskText === ""){
+      alert("Please add a task first");
+    }else{
+      this.props.addTaskFunc(this.state.newTaskText);
+      this.setState({
+      newTaskText: "" 
+      });
+    }
   }
   render() {
     // JSX is NOT HTML
