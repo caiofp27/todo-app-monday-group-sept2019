@@ -15,7 +15,9 @@ class Item extends React.Component {
             <button className="btn btn-info">Delete</button>
           </div>
           <div className="col-2">
-            {this.props.completed === false && <button className="btn btn-light">Done</button>}
+            {
+              this.props.completed ? <button className="btn btn-light">Uncheck</button> : <button className="btn btn-light">Done</button>
+            }
           </div>
         </div>
       </li>
