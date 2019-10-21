@@ -12,11 +12,12 @@ class Item extends React.Component {
             </span>
           </div>
           <div className="col-2">
-            <button className="btn btn-info">Delete</button>
+            <i className="fas fa-trash" />
           </div>
           <div className="col-2">
-            {
-              this.props.completed ? <button className="btn btn-light">Uncheck</button> : <button className="btn btn-light">Done</button>
+            {this.props.completed ? 
+              <i className="fas fa-undo" /> : 
+              <i className="fas fa-check greenCheck" />
             }
           </div>
         </div>
