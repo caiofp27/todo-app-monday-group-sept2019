@@ -29,9 +29,10 @@ class AddItem extends React.Component {
           id="addItemInput"
           type="text"
           className="form-control"
-          placeholder="E.g. take out bins"
+          placeholder="E.g. take out bins (max 40 caracteres)"
           value={this.state.newTaskText}
           onChange={this.updateTaskText}
+          maxLength="40" 
         />
         <div className="mt-3 mb-3">
           <button id="addButton" className="btn" onClick={this.handleClick}>
