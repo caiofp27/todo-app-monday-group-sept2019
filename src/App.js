@@ -20,10 +20,12 @@ class App extends React.Component {
   addTask = (taskText) => {
     console.log(taskText);
     //Create a new task with default completed and date propeties
+    let now = new Date();
+    let today = now.getFullYear()+"-"+(now.getMonth()+1)+"-"+now.getDate();
     const newTask = {
       text: taskText,
       completed: false,
-      date: "2019-10-21",
+      date: today,
       id: uuid()
     };
     //Add that task to the state
