@@ -34,8 +34,30 @@ class App extends React.Component {
       tasks: tasksCopy
     });
   }
+  deleteTask = id => {
+    //remove the task with the ID in question from this.state.task
+    //filter to remove the tast that we want to delete
+    const filterTask = this.state.tasks.filter(task => {
+      return task.id !== id;
+    });
+    //setState
+    this.setState({
+      tasks: filterTask
+    });
+  }
+  checkTask = id => {
+    const checkTask = this.state.tasks.map(task => {
+      if(task.id === id){
+        task.completed = true;
+      }
+      return task;
+    });
+    this.setState({
+      tasks: checkTask
+    });
+  }
+  
   render() {
-    const sortedTasks = this.state.tasks.sort();
     return (
       <div className="container">
         <h1 id="mainHeading">Todo List</h1>
@@ -47,8 +69,9 @@ class App extends React.Component {
           <div className="col-12 col-lg-6">
             <ItemCount count={this.state.tasks.length} />
             <ul id="itemList">
-              {sortedTasks.map(item => {
-                return <Item key={item.id} text={item.text} completed={item.completed} date={item.date} />
+              {this.state.tasks.map(item => {
+                return (
+                  <Item key={item.id} text={item.text} completed={item.completed} date={item.date} deleteTaskFunc={this.deleteTask} checkTaskFunc={this.checkTask} id={item.id} />);
               })}
             </ul>
           </div>

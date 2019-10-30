@@ -2,6 +2,12 @@ import React from "react";
 import "./Item.css";
 
 class Item extends React.Component {
+  handleDelete = e => {
+    this.props.deleteTaskFunc(this.props.id);
+  }
+  handleCheck = e => {
+    this.props.checkTaskFunc(this.props.id);
+  }
   render() {
     return (
       <li className="list-group-item">
@@ -12,12 +18,12 @@ class Item extends React.Component {
             </span>
           </div>
           <div className="col-2">
-            <i className="fas fa-trash" />
+            <i className="fas fa-trash"  onClick={this.handleDelete}/>
           </div>
           <div className="col-2">
             {this.props.completed ? 
               <i className="fas fa-undo" /> : 
-              <i className="fas fa-check greenCheck" />
+              <i className="fas fa-check greenCheck" onClick={this.handleCheck}/>
             }
           </div>
         </div>

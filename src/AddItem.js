@@ -11,7 +11,8 @@ class AddItem extends React.Component {
       newTaskText: event.target.value
     });
   }
-  handleClick = () => {
+  handleClick = (e) => {
+    e.preventDefault();
     if(this.state.newTaskText === ""){
       alert("Please add a task first");
     }else{
