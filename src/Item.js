@@ -8,7 +8,7 @@ class Item extends React.Component {
         <div className="row">
           <div className="col-8">
             <span className={this.props.completed ? "completedItem" : ""}>
-              {this.props.text}
+              {this.props.text} {this.props.date}
             </span>
           </div>
           <div className="col-2">

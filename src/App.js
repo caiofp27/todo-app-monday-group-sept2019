@@ -3,6 +3,7 @@ import uuid from "uuid/v4";
 import AddItem from "./AddItem";
 import ItemCount from "./ItemCount";
 import Item from "./Item";
+import Moment from "moment";
 import "./App.css";
 
 class App extends React.Component {
@@ -10,7 +11,7 @@ class App extends React.Component {
     tasks: [
       {text: "walk the cat", completed: true, date: "2019-10-16", id: uuid()},
       {text: "buy oats", completed: false, date: "2019-10-17", id: uuid()},
-      {text: "learn React", completed: false, date: "2019-10-18", id: uuid()},
+      {text: "learn React", completed: false, date: "2019-10-15", id: uuid()},
       {text: "wash slippers", completed: true, date: "2019-10-20", id: uuid()},
       {text: "de-flea the cat", completed: false, date: "2019-10-30", id: uuid()},
       {text: "create instagram account for cat", completed: true, date: "2019-11-06", id: uuid()}
@@ -18,14 +19,11 @@ class App extends React.Component {
   }
   //Function to update the tasks with a new task
   addTask = (taskText) => {
-    console.log(taskText);
     //Create a new task with default completed and date propeties
-    let now = new Date();
-    let today = now.getFullYear()+"-"+(now.getMonth()+1)+"-"+now.getDate();
     const newTask = {
       text: taskText,
       completed: false,
-      date: today,
+      date: Moment().format('YYYY-MM-DD'),
       id: uuid()
     };
     //Add that task to the state
@@ -37,6 +35,7 @@ class App extends React.Component {
     });
   }
   render() {
+    const sortedTasks = this.state.tasks.sort();
     return (
       <div className="container">
         <h1 id="mainHeading">Todo List</h1>
@@ -48,7 +47,7 @@ class App extends React.Component {
           <div className="col-12 col-lg-6">
             <ItemCount count={this.state.tasks.length} />
             <ul id="itemList">
-              {this.state.tasks.map(item => {
+              {sortedTasks.map(item => {
                 return <Item key={item.id} text={item.text} completed={item.completed} date={item.date} />
               })}
             </ul>
